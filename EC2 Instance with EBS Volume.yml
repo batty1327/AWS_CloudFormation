@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: 2010-09-09          # Template version
+Description: A sample template                # Template description
+Resources:                                    # Define AWS resources
+  MyEC2Instance:                              # Resource name
+    Type: 'AWS::EC2::Instance'                # Resource type (EC2 instance)
+    Properties:                               # Resource properties
+      ImageId: ami-079b5e5b3971bd10d          # AMI ID
+      InstanceType: t2.micro                  # Instance type
+      KeyName: windows                        # Key pair name
+      BlockDeviceMappings:                    # Define block device mappings (EBS volume)
+        - DeviceName: /dev/sdm                # Device name
+          Ebs:
+            VolumeType: io1                   # EBS volume type
+            Iops: 200                         # Provisioned IOPS
+            DeleteOnTermination: true         # delete volume on instance termination
+            VolumeSize: 8                     # Volume size (in GB)
